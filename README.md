@@ -52,7 +52,7 @@ docker run -e VUE_APP_CESIUM_TOKEN=<Your cesium ion token> -it -p 8080:8080 -v $
 
 ```
 
-🧠 Chatbot Extension   
+# 🧠 Chatbot Extension   
 This fork adds a FastAPI-based backend with LLM integration for telemetry-aware chatbot functionality.
 
 ## 🚀 Features
@@ -67,7 +67,7 @@ This fork adds a FastAPI-based backend with LLM integration for telemetry-aware 
 - Automatic session ID detection
 - `.env` support for secure API key management
 
-🧪 How to Run
+## 🧪 How to Run
 1. Clone the repo and install frontend
 
 ```bash
@@ -95,8 +95,8 @@ Then run the server:
 ```bash
 uvicorn main:app --reload
 ```
-Frontend: http://localhost:8080
+Frontend: http://localhost:8080  
 Backend API: http://localhost:8000/docs
 
-Watch demo video of the chatbot integration:
+## Watch demo video of the chatbot integration:
 https://drive.google.com/file/d/11egjB3f9EXFflnEIcMfQV6jZwNFlBWIA/view?usp=sharing
