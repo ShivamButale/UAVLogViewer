@@ -105,7 +105,6 @@ Please provide an accurate, technically insightful answer.
     try:
 
         client = groq.Client(api_key=os.getenv("GROQ_API_KEY"))
-        # client = groq.Client(api_key="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")
 
         chat_completion = client.chat.completions.create(
             messages=[
