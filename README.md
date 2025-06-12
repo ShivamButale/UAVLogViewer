@@ -69,14 +69,7 @@ This fork adds a FastAPI-based backend with LLM integration for telemetry-aware 
 
 📁 Folder Structure Overview
 
-UAVLogViewer/
-├── backend/             # Python FastAPI backend
-│   ├── main.py          # FastAPI app
-│   ├── parser.py        # Telemetry log parser
-│   ├── requirements.txt # Python deps
-├── src/components/
-│   ├── ChatBox.vue      # Vue component for chatbot UI
-│   └── SideBarFileManager.vue # Integrated file upload trigger
+<pre> UAVLogViewer/ ├── backend/ # Python FastAPI backend │ ├── main.py # FastAPI app │ ├── parser.py # Telemetry log parser │ └── requirements.txt # Python dependencies ├── src/ │ └── components/ │ ├── ChatBox.vue # Vue component for chatbot UI │ └── SideBarFileManager.vue # Integrated file upload trigger </pre>
 
 🧪 How to Run
 1. Clone the repo and install frontend
