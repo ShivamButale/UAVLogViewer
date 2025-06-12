@@ -52,7 +52,7 @@ docker run -e VUE_APP_CESIUM_TOKEN=<Your cesium ion token> -it -p 8080:8080 -v $
 
 ```
 
-🧠 Chatbot Extension (Coding Challenge Submission)
+🧠 Chatbot Extension
 This fork adds a FastAPI-based backend with LLM integration for telemetry-aware chatbot functionality.
 
 ## 🚀 Features
