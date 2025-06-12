@@ -151,15 +151,38 @@ export default {
             this.state.processStatus = 'Pre-processing...'
             this.state.processPercentage = 100
             this.file = file
+
+            // Start reading the file
             const reader = new FileReader()
-            reader.onload = function (e) {
+            reader.onload = (e) => {
                 const data = reader.result
                 worker.postMessage({
                     action: 'parse',
                     file: data,
-                    isTlog: (file.name.endsWith('tlog')),
-                    isDji: (file.name.endsWith('txt'))
+                    isTlog: file.name.endsWith('tlog'),
+                    isDji: file.name.endsWith('txt')
                 })
+
+                // Upload to FastAPI after reading
+                const formData = new FormData()
+                formData.append('file', file)
+
+                fetch('http://localhost:8000/upload/', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.summary && result.summary.session_id) {
+                        // Emit the session ID
+                            this.$root.$emit('session-id-updated', result.summary.session_id)
+                        } else {
+                            console.error('No session_id found in upload response:', result)
+                        }
+                    })
+                    .catch(err => {
+                        console.error('Error uploading to FastAPI:', err)
+                    })
             }
             this.state.logType = file.name.endsWith('tlog') ? 'tlog' : 'bin'
             if (file.name.endsWith('.txt')) {
@@ -225,6 +248,24 @@ export default {
             a.click()
             document.body.removeChild(a)
             window.URL.revokeObjectURL(url)
+        },
+        async uploadToFastAPI (file) {
+            const form = new FormData()
+            form.append('file', file)
+
+            try {
+                const res = await fetch('http://localhost:8000/upload/', { method: 'POST', body: form })
+                const result = await res.json()
+
+                if (result.summary?.session_id) {
+                    // Emit session_id to parent
+                    this.$eventHub.$emit('session-id-updated', result.summary.session_id)
+                } else {
+                    console.error('Upload path missing session_id:', result)
+                }
+            } catch (e) {
+                console.error('Upload failed:', e)
+            }
         }
     },
     mounted () {
