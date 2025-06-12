@@ -55,18 +55,17 @@ docker run -e VUE_APP_CESIUM_TOKEN=<Your cesium ion token> -it -p 8080:8080 -v $
 🧠 Chatbot Extension (Coding Challenge Submission)
 This fork adds a FastAPI-based backend with LLM integration for telemetry-aware chatbot functionality.
 
-🚀 Features Added
-Upload .bin UAV logs and ask natural language questions
+## 🚀 Features
 
-Chatbot answers questions based on telemetry (RCIN, GPS, BAT, etc.)
-
-Handles flight anomaly queries like "Did the UAV crash?" or "Was there a GPS glitch?"
-
-Groq LLM integration via Python backend
-
-Auto-detected session_id from uploaded logs
-
-.env support for API keys
+- Upload `.bin` UAV log files
+- Ask natural language questions like:
+  - "Did the UAV crash?"
+  - "Was there a GPS glitch?"
+  - "Any signal loss during flight?"
+- Answers based on telemetry data (`RCIN`, `GPS`, `BAT`, etc.)
+- Groq LLM integration via Python backend
+- Automatic session ID detection
+- `.env` support for secure API key management
 
 📁 Folder Structure Overview
 
@@ -82,23 +81,31 @@ UAVLogViewer/
 🧪 How to Run
 1. Clone the repo and install frontend
 
-git clone https://github.com/your-username/UAVLogViewer
+```bash
+git clone https://github.com/<your-username>/UAVLogViewer.git
 cd UAVLogViewer
 npm install
 npm run dev
+```
 
 2. Setup and run backend
 
+```bash
 cd backend
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
 pip install -r requirements.txt
+```
 
 Create a .env file in backend/ with this content:
+```bash
 GROQ_API_KEY=your_actual_key_here
+```
 
 Then run the server:
+```bash
 uvicorn main:app --reload
+```
 Frontend: http://localhost:8080
 Backend API: http://localhost:8000/docs
 
